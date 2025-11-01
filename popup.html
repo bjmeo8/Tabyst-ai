@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taby</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 380px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #1f2937;
+    }
+    
+    .header {
+      padding: 20px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+    
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 20px;
+    }
+    
+    .section {
+      margin-bottom: 24px;
+    }
+    
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .stat-card {
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    
+    .progress-card {
+      padding: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .progress-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e40af;
+    }
+    
+    .progress-percentage {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: #dbeafe;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+      transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+      font-size: 12px;
+      color: #3b82f6;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+      margin-top: 8px;
+    }
+    
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #dcfce7;
+      color: #15803d;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .status-badge.pending {
+      background: #fef3c7;
+      color: #a16207;
+    }
+    
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    
+    .info-text {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    
+    .shortcuts {
+      margin-top: 16px;
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    
+    .shortcut-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .shortcut-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .shortcut-label {
+      color: #6b7280;
+    }
+    
+    .shortcut-key {
+      font-family: 'SF Mono', Monaco, monospace;
+      background: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
+      color: #1f2937;
+      font-weight: 600;
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Tabyst</h1>
+    <p>AI-powered tab management</p>
+  </div>
+  
+  <div class="content">
+    <!-- Stats Section -->
+    <div class="section">
+      <div class="section-title">Statistics</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="totalTabs">0</div>
+          <div class="stat-label">Total Tabs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="indexedTabs">0</div>
+          <div class="stat-label">AI Indexed</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cold Start Section -->
+    <div class="section" id="coldStartSection">
+      <div class="section-title">AI Indexing</div>
+      
+      <!-- Avant cold start -->
+      <div id="beforeColdStart">
+        <p class="info-text">
+          Start AI indexing to get intelligent tab suggestions powered by Chrome's built-in AI.
+        </p>
+        <button class="btn btn-primary" id="startColdStartBtn">
+          🚀 Start AI Indexing
+        </button>
+        <p class="info-text" style="margin-top: 12px; font-size: 11px;">
+          ⏱️ This may take 10-20 minutes on modest hardware. You can use Taby immediately with basic suggestions.
+        </p>
+      </div>
+      
+      <!-- Pendant cold start -->
+      <div id="duringColdStart" class="hidden">
+        <div class="progress-card">
+          <div class="progress-header">
+            <div class="progress-title">Indexing in progress...</div>
+            <div class="progress-percentage" id="progressPercentage">0%</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="progressText">Preparing...</div>
+        </div>
+        <button class="btn btn-secondary" id="pauseColdStartBtn">
+          ⏸️ Pause Indexing
+        </button>
+      </div>
+      
+      <!-- Après cold start -->
+      <div id="afterColdStart" class="hidden">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          AI Indexing Complete
+        </div>
+        <p class="info-text" style="margin-top: 12px;">
+          All tabs are indexed. You're getting the best AI-powered suggestions!
+        </p>
+      </div>
+    </div>
+    
+    <!-- Shortcuts -->
+    <div class="section">
+      <div class="section-title">Keyboard Shortcuts</div>
+      <div class="shortcuts">
+        <div class="shortcut-item">
+          <span class="shortcut-label">Open Taby</span>
+          <span class="shortcut-key">⌘+Shift+L</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label">Quick Return</span>
+          <span class="shortcut-key">⌘+Shift+K</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
