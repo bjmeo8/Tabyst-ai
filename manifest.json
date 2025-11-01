@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Tabyst",
   "version": "0.4.0",
-  "description": "Cursor Tab, but for browser tabs. Find the right tab instantly.",
+  "description": "Tabyst is an intelligent browser tab management extension that leverages Chrome's Built-in AI APIs to provide context-aware tab recommendations and seamless navigation.",
   "permissions": [
     "tabs",
     "scripting",
@@ -40,4 +40,5 @@
   "icons": {
     "128": "tabyst.png"
   }
+
 }
