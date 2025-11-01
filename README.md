@@ -1,4 +1,4 @@
-# Tabyst - Intelligent Tab Management Extension
+# Tabyst - Browser Companion for Contextual Intelligence
 
 > **Cursor Tab, but for browser tabs. Find the right tab instantly.**
 
@@ -255,3 +255,4 @@ For questions, feedback, or collaboration:
 **Built with ❤️ for the Google Chrome AI Challenge 2025**
 
 *Demonstrating the power of on-device AI for privacy-preserving productivity enhancement.*
+
